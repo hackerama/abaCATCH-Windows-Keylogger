@@ -16,7 +16,7 @@ Testado em: **Windows 10** *(tested on)*<br>
 https://sourceforge.net/projects/pyhook/
 
 ## Configuração *(setup)*
-***variáveis:***<br>
+***variáveis:*** <br>
 
 **ldir** *(sets local directory, dropping directory)*<br>
 Diretório local, onde será salvo o arquivo de log. <br>
