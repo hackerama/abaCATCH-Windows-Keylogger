@@ -7,7 +7,7 @@ Testado em: **Windows 10** *(tested on)*<br>
 - Captura de teclas digitadas pelo cliente em tempo real *(real-time keylogging)* <br>
 - Armazenamento local de logs *(local storage)* <br> 
 - Envio de logs para servidor remoto *(send logs to remote server)*<br>
-
+- Envio de logs para servidor remoto *(send logs to remote server)*<br>
 ## Instalação *(install)*
     $ pip install requests
     $ pip install pypiwin32
@@ -16,7 +16,9 @@ Testado em: **Windows 10** *(tested on)*<br>
 https://sourceforge.net/projects/pyhook/
 
 ## Configuração *(setup)*
-    variável **ldir**
+variáveis:<br>
+**ldir*:** Diretório local, onde será salvo o arquivo de log. <br>
+           Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar. 
 
 
     
