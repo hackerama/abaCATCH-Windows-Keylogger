@@ -18,7 +18,7 @@ https://sourceforge.net/projects/pyhook/
 ## Configuração *(setup)*
 ***variáveis:***<br>
 
-**ldir*:** *(sets local directory, dropping directory)*
+**ldir** *(sets local directory, dropping directory)*<br>
 Diretório local, onde será salvo o arquivo de log. <br>
 Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar. 
 
