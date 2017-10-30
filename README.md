@@ -16,13 +16,15 @@ Testado em: **Windows 10** *(tested on)*<br>
 https://sourceforge.net/projects/pyhook/
 
 ## Configuração *(setup)*
-variáveis:<br>
-**ldir*:** Diretório local, onde será salvo o arquivo de log. <br>
-           Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar. 
+***variáveis:***<br>
 
+**ldir*:** *(sets local directory, dropping directory)*
+Diretório local, onde será salvo o arquivo de log. <br>
+Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar. 
 
-    
-
+**urlUpload** *(Upload page on remote server)*<br>
+Página de upload no servidor remoto, para a função de envio remoto. <br>
+Será criado um arquivo *capt-(nome do PC).txt* na mesma pasta de upload.php, no servidor.  
 
 ***Funções***
 *Funções*
