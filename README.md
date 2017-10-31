@@ -3,7 +3,7 @@
 Keylloger feito em **Python 2.7** *(written in Python 2.7)* <br>
 Testado em: **Windows 10** *(tested on)*<br>
 Escrito por: **Carlos Néri Correia** *(coded by)* <br>
-Versão: **1.0** 
+Versão: **1.0** *(version)*
 
 ## Funções *(features)*
 - Captura de teclas digitadas pelo cliente em tempo real *(real-time keylogging)* <br>
