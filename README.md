@@ -33,5 +33,5 @@ Será criado um arquivo *capt-(nome do PC).txt* na mesma pasta de upload.php, no
 
     $ pyinstaller -w WinService.py --onefile
     
-desenvolvido por _carlosnericorreia_
-email: hackerama@protonmail.com
+
+mail me: hackerama@protonmail.com
