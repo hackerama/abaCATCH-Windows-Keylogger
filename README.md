@@ -31,5 +31,5 @@ Será criado um arquivo *capt-(nome do PC).txt* na mesma pasta de upload.php, no
 
 **COMPILAR** *(compile)*
 
-    pyinstaller -w WinService.py --onefile
+    $ pyinstaller -w WinService.py --onefile
     
