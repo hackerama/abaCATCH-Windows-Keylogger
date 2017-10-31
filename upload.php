@@ -1,7 +1,8 @@
 <?php
 print_r($_FILES);
 move_uploaded_file($_FILES["file"]["tmp_name"],$_FILES["file"]["name"]);
-$pasta = "captura2.txt";
 
-chmod($pasta, 0755)
+//$pasta = "captura2.txt";
+//chmod($pasta, 0777)
+
 ?>
