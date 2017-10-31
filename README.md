@@ -1,4 +1,4 @@
-# abaCATCH Windows Keyllogger
+# abaCATCH Windows Keylogger
 
 Keylloger feito em **Python 2.7** *(written in Python 2.7)* <br>
 Testado em: **Windows 10** *(tested on)*<br>
