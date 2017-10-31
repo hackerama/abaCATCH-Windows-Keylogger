@@ -9,7 +9,7 @@ Versão: **1.0**
 - Captura de teclas digitadas pelo cliente em tempo real *(real-time keylogging)* <br>
 - Armazenamento local de logs *(local storage)* <br> 
 - Envio de logs para servidor remoto *(send logs to remote server)*<br>
-- Envio de logs para servidor remoto *(send logs to remote server)*<br>
+- Persistência *(persistence)*<br>
 
 ## Instalação *(install)*
     $ pip install requests
@@ -33,3 +33,5 @@ Será criado um arquivo *capt-(nome do PC).txt* na mesma pasta de upload.php, no
 
     $ pyinstaller -w WinService.py --onefile
     
+desenvolvido por _carlosnericorreia_
+email: hackerama@protonmail.com
